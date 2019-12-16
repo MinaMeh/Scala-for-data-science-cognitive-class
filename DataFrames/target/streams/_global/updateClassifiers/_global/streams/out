@@ -1,0 +1,4 @@
+[debug] "not up to date. inChanged = true, force = false
+[debug] Updating ProjectRef(uri("file:/media/mina/Data/courses/ML/Scala%20for%20data%20science/DataFrames/"), "dataframes")...
+[debug] Done updating ProjectRef(uri("file:/media/mina/Data/courses/ML/Scala%20for%20data%20science/DataFrames/"), "dataframes")
+[warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.

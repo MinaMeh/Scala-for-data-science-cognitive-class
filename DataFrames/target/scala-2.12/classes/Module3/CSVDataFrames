@@ -1,0 +1,31 @@
+import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.SQLContext
+
+object CSVDataFrames{
+  def main(args: Array[String]): Unit = {
+    val sparkConf= new SparkConf()
+    sparkConf.setMaster("local[*]")
+    sparkConf.setAppName("Spark data frames")
+    sparkConf.set("spark.sql.shuffle.partitions","4")
+    sparkConf.set("spark.app.id","DataFramesWithCSV")
+    val sc = new SparkContext(sparkConf)
+    val sqlContext = new SQLContext(sc)
+    try {
+      val df = sqlContext.read
+        //Specifies the input data source format. The readers and writers
+        //of this format is provided by the databricks-csv library. This also shows
+        //how to add support for custom data sources.
+        .format("com.databricks.spark.csv")
+        .option("header", "true") // Use first line of all files as header
+        .option("inferSchema", "true") // Automatically infer data types
+        .load("data/airline-flights/carriers.csv")
+
+      df.printSchema()
+      df.show()
+
+    } finally {
+      sc.stop()
+    }
+
+  }
+}
